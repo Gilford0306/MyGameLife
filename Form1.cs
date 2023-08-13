@@ -23,7 +23,6 @@ namespace MyGameLife
         private int cols;
         private int CurrentGeneration = 0;
         bool mes = false;
-        private Cell winner;
         public Form1()
         {
             InitializeComponent();
@@ -33,7 +32,10 @@ namespace MyGameLife
         {
             if (timer1.Enabled)
                 return;
-            
+            if (timer2.Enabled)
+               {
+                timer2.Stop();          
+               }
             CurrentGeneration = 0;
             Text = $"Generation {CurrentGeneration}";
             npdDensity.Enabled = false;
@@ -52,7 +54,7 @@ namespace MyGameLife
                     fields[x, y] = rnd.Next((int)npdDensity.Value) == 0;
                     cells[x, y] = new Cell();
                     cells[x, y].isLife = fields[x, y];
-
+                    cells[x, y].generation = 0;
                 }
             }
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -62,7 +64,7 @@ namespace MyGameLife
 
         private void NextGeneration()
         {
-           
+
             Brush result = PickBrush();
             graphics.Clear(Color.White);
             var newField = new bool[cols, rows];
@@ -71,14 +73,13 @@ namespace MyGameLife
             {
                 for (int y = 0; y < rows; y++)
                 {
-                    if (cells[x, y].generation == 10 && mes == false)
+                    if (cells[x, y].generation == 1000 && mes == false)
                     {
-                     
-                        StopGame();
-                        MessageBox.Show($"The Cell exsist 1000 generations");
+                        timer1.Stop();
+                        timer2.Start();
                         mes = true;
-                        winner = cells[x, y];
-
+                        MessageBox.Show("Cells exsist 1000 generations");
+                        this.Dispose();
 
                     }
 
@@ -159,19 +160,22 @@ namespace MyGameLife
         }
         private void StopGame()
         {
-            //if (!timer1.Enabled)
-            //    return;
+            if (!timer1.Enabled)
+                return;
             timer1.Stop();
             npdDensity.Enabled = true;
             npdResolution.Enabled = true;
+            
         }
         private void bstart_Click(object sender, EventArgs e)
         {
+
             StartGame();
         }
 
         private void bstop_Click(object sender, EventArgs e)
         {
+
             StopGame();
         }
 
@@ -204,13 +208,40 @@ namespace MyGameLife
             }
         }
         private bool ValidateMousePosition(int x, int y)
-        { 
-        return x >= 0 && y >= 0 && x <= cols && y <= rows;
+        {
+            return x >= 0 && y >= 0 && x <= cols && y <= rows;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Text = $"Generation {CurrentGeneration}";
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            Strobe();
+        }
+
+        private void Strobe()
+        {
+            for (int x = 0; x < cols; x++)
+            {
+                for (int y = 0; y < rows; y++)
+                {
+                    if (cells[x, y].generation > 999)
+                    {
+                        if (cells[x, y].color == Brushes.Blue)
+                            cells[x, y].color = Brushes.Red;
+                        else
+                            cells[x, y].color = Brushes.Blue;
+                    }
+                    else
+                        cells[x, y].color = Brushes.White;
+
+                    graphics.FillRectangle(cells[x, y].color, x * resolution, y * resolution, resolution, resolution);
+                }
+            }
+            pictureBox1.Refresh();
         }
     }
 }

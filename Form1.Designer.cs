@@ -40,6 +40,7 @@
             this.LResolution = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -93,7 +94,7 @@
             this.npdDelay.Size = new System.Drawing.Size(120, 20);
             this.npdDelay.TabIndex = 7;
             this.npdDelay.Value = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
             0});
@@ -165,7 +166,7 @@
             this.npdResolution.Size = new System.Drawing.Size(120, 20);
             this.npdResolution.TabIndex = 2;
             this.npdResolution.Value = new decimal(new int[] {
-            3,
+            15,
             0,
             0,
             0});
@@ -205,6 +206,10 @@
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -240,6 +245,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.NumericUpDown npdDelay;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
