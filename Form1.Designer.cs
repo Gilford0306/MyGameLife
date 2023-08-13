@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.npdDelay = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.bstop = new System.Windows.Forms.Button();
             this.bstart = new System.Windows.Forms.Button();
             this.npdDensity = new System.Windows.Forms.NumericUpDown();
@@ -42,6 +44,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.npdDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.npdDensity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.npdResolution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -57,6 +60,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.npdDelay);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.bstop);
             this.splitContainer1.Panel1.Controls.Add(this.bstart);
             this.splitContainer1.Panel1.Controls.Add(this.npdDensity);
@@ -71,10 +76,43 @@
             this.splitContainer1.SplitterDistance = 207;
             this.splitContainer1.TabIndex = 0;
             // 
+            // npdDelay
+            // 
+            this.npdDelay.Location = new System.Drawing.Point(13, 172);
+            this.npdDelay.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.npdDelay.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.npdDelay.Name = "npdDelay";
+            this.npdDelay.Size = new System.Drawing.Size(120, 20);
+            this.npdDelay.TabIndex = 7;
+            this.npdDelay.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.npdDelay.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(10, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Delay";
+            // 
             // bstop
             // 
             this.bstop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bstop.Location = new System.Drawing.Point(13, 227);
+            this.bstop.Location = new System.Drawing.Point(14, 305);
             this.bstop.Name = "bstop";
             this.bstop.Size = new System.Drawing.Size(120, 49);
             this.bstop.TabIndex = 5;
@@ -85,7 +123,7 @@
             // bstart
             // 
             this.bstart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bstart.Location = new System.Drawing.Point(13, 159);
+            this.bstart.Location = new System.Drawing.Point(14, 237);
             this.bstart.Name = "bstart";
             this.bstart.Size = new System.Drawing.Size(120, 45);
             this.bstart.TabIndex = 4;
@@ -160,6 +198,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(1431, 874);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // timer1
             // 
@@ -174,11 +213,13 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.npdDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.npdDensity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.npdResolution)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -197,6 +238,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label LResolution;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.NumericUpDown npdDelay;
+        private System.Windows.Forms.Label label1;
     }
 }
 
